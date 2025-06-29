@@ -1,0 +1,100 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Reader - Dashboard</title>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    <div class="home">
+        <div class="navbar">
+
+            <h2>Welcome, <%= user.username %>!</h2>
+            <a href="/auth/logout" class="logout-btn">Logout</a>
+        </div>
+        <div class="box">
+            
+            
+            
+            <h3>Upload a PDF</h3>
+            <div class="box2">
+
+                <form action="/pdf/upload" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="pdf" accept="application/pdf" required>
+                    <button type="submit">Upload</button>
+                </form>
+                <h2>Your PDFs</h2>
+                <ul>
+                    <% pdfs.forEach(pdf => { %>
+                        <li>
+        
+                            <a href="/pdf/view/<%= pdf._id %>">View PDF</a>
+                            <a href="/pdf/view?file=<%= pdf.filename %>" id="url" target="_blank"><%= pdf.filename %></a>
+                         
+                            <a href="/pdf/delete/<%= pdf._id %>" class="btn btn-danger">Delete PDF</a>
+        
+                        </li>
+                    <% }); %>
+                   >
+                   </ul>
+
+
+
+
+            </div>
+        </div>
+
+     </div>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Reader - Dashboard</title>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    
+    <!-- Left Sidebar (User Profile) -->
+    <div class="sidebar">
+        <div class="profile-pic">
+            <%= user.username.charAt(0).toUpperCase() %>
+        </div>
+        <div class="user-details">
+            <h2><%= user.username %></h2>
+            <p>Email: <%= user.email %></p>
+            
+        </div>
+        <a href="/auth/logout" class="logout-btn">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="box">
+            <h3>Upload a PDF</h3>
+            <div class="box2">
+                <form action="/pdf/upload" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="pdf" accept="application/pdf" required>
+                    <button type="submit">Upload</button>
+                </form>
+                <h2>Your PDFs</h2>
+                <ul>
+                    <% pdfs.forEach(pdf => { %>
+                        <li>
+                            <a class="view-btn" href="/pdf/view/<%= pdf._id %>">View PDF</a>
+                            <a href="/pdf/view?file=<%= pdf.filename %>" id="url" target="_blank"><%= pdf.filename %></a>
+                            <a href="/pdf/delete/<%= pdf._id %>" class="btn btn-danger">Delete PDF</a>
+                        </li>
+                    <% }); %>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
